@@ -1,25 +1,9 @@
-const refs = {
-  openModalBtn: document.querySelector('[data-open-modal]'),
-  closeModalBtn: document.querySelector('[data-close-modal]'),
-  modalBg: document.querySelector('[data-modal-bg]'),
-};
-document.body.classList.remove('modal-open');
-
-refs.openModalBtn.addEventListener('click', toggleModal);
-refs.closeModalBtn.addEventListener('click', toggleModal);
-refs.modalBg.addEventListener('click', handleModalBgClick);
-
-function toggleModal() {
-   const isHidden = refs.backdrop.classList.toggle('is-hidden');
-  if (isHidden) {
-    document.body.classList.remove('modal-open');
-  } else {
-    document.body.classList.add('modal-open');
-  }
+function getShippingMessage(country, price, deliveryFee) {
+  const totalPrice = price + deliveryFee;
+  return `Shipping to ${country} will cost ${totalPrice} credits`;
 }
 
-function handleModalBgClick(event) {
-  if (event.target === refs.modalBg) {
-    toggleModal();
-  }
-}
+console.log(getShippingMessage("Australia", 50, 10));
+console.log(getShippingMessage("Germany", 100, 20));
+console.log(getShippingMessage("Sweden", 200, 15));
+

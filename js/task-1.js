@@ -1,11 +1,9 @@
-(() => {
-  document
-    .querySelector('.js-contact-form')
-    .addEventListener('submit', e => {
-      e.preventDefault();
+function makeTransaction(quantity, pricePerDroid) {
+  const totalPrice = quantity * pricePerDroid;
+  return `You ordered ${quantity} droids worth ${totalPrice} credits!`;
+}
 
-      new FormData(e.currentTarget).forEach((value, name) =>
-        console.log(`${name}: ${value}`)
-      );
-    });
-})();
+console.log(makeTransaction(5, 3000));
+console.log(makeTransaction(3, 1000));
+console.log(makeTransaction(10, 500));
+
