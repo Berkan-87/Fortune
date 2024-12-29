@@ -7,8 +7,183 @@
     <script src="./js/task-1.js"></script>
     <script src="./js/task-2.js"></script>
     <script src="./js/task-3.js"></script>
+    <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                const calculateButton = document.getElementById("calculate-btn");
+                const completeButton = document.getElementById("complete-btn");
+
+                // Hesaplama İşlemi
+                calculateButton.addEventListener("click", function () {
+                    const droidQuantityElement = document.getElementById("droid-quantity");
+                    const deliveryCountryElement = document.getElementById("delivery-country");
+                    const totalCostElement = document.getElementById("total-cost");
+
+                    // Seçilen droid miktarı ve kredisi
+                    const selectedDroidOption = droidQuantityElement.options[droidQuantityElement.selectedIndex];
+                    const droidCost = selectedDroidOption ? parseInt(selectedDroidOption.getAttribute("data-credits")) : 0;
+
+                    // Seçilen teslimat ücreti
+                    const selectedDeliveryOption = deliveryCountryElement.options[deliveryCountryElement.selectedIndex];
+                    const deliveryFee = selectedDeliveryOption ? parseInt(selectedDeliveryOption.getAttribute("data-fee")) : 0;
+
+                    // Toplam maliyeti hesapla ve göster
+                    if (droidCost && deliveryFee) {
+                        const totalCost = droidCost + deliveryFee;
+                        totalCostElement.value = `${totalCost} credits`;
+                    } else {
+                        totalCostElement.value = "Please select all options!";
+                    }
+                });
+
+                // Complete Order İşlemi
+                completeButton.addEventListener("click", function (event) {
+                    event.preventDefault(); // Sayfanın yeniden yüklenmesini önler
+                    const droidQuantityElement = document.getElementById("droid-quantity");
+                    const deliveryCountryElement = document.getElementById("delivery-country");
+
+                    // Kullanıcının seçim yapıp yapmadığını kontrol et
+                    if (
+                        droidQuantityElement.selectedIndex > 0 &&
+                        deliveryCountryElement.selectedIndex > 0
+                    ) {
+                        alert("Your order is complete!");
+                    } else {
+                        alert("Please complete your selections before ordering!");
+                    }
+                });
+            });
+
+
+        
+    </script>
+    <style>
+      
+        /* Genel Ayarlar */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #444;
+        }
+
+        /* Sipariş Bölümü */
+        #order-section {
+            background-color: #ffffff;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+        }
+
+        /* Form Elemanları */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        select, input, button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Sipariş Alındı Mesajı */
+        #order-success-message {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e9f7f6;
+            border: 1px solid #a3dad6;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            color: #2e856e;
+        }
+
+    </style>
+
 </head>
 <body>
     
+    <h1>Droid Sales Station</h1>
+
+    <div id="order-section">
+        <form id="order-form">
+            <!-- Droid Quantity -->
+            <label for="droid-quantity">Droid Quantity:</label>
+            <select id="droid-quantity">
+                <option value="" disabled selected>Select quantity</option>
+                <option value="5" data-credits="15000">5 droids (15000 credits)</option>
+                <option value="3" data-credits="3000">3 droids (3000 credits)</option>
+                <option value="10" data-credits="5000">10 droids (5000 credits)</option>
+            </select>
+
+            <!-- Delivery Country -->
+            <label for="delivery-country">Delivery Country:</label>
+            <select id="delivery-country">
+                <option value="" disabled selected>Select country</option>
+                <option value="Australia" data-fee="170">Australia</option>
+                <option value="Germany" data-fee="100">Germany</option>
+                <option value="Sweden" data-fee="120">Sweden</option>
+            </select>
+
+            <button type="button" id="calculate-btn">Calculate</button>
+            <br>
+
+            <!-- Total Cost -->
+            <label for="total-cost">Total Cost:</label>
+            
+            <input type="text" id="total-cost" readonly placeholder="Total cost will appear here">
+            
+            <!-- Total Cost -->
+            <div class="form-contract">
+                <input type="checkbox" class="form-checkbox visually-hidden" name="user-privacy"
+                    id="user-privacy" value="true">
+                <label for="user-privacy" class="form-check">
+                    <span class="checkbox-uniq">
+                        <svg class="checkbox-icon" width="10" height="8">
+                            <use href="./images/icons.svg#check"></use>
+                        </svg>
+                    </span>
+                    I accept the terms and conditions of the
+                    <a class="form-link" href="">Privacy Policy</a>
+                </label>
+            </div>
+            <!-- Buttons -->
+           
+            <button type="submit" id="complete-btn">Complete Order</button>
+        </form>
+        <div id="order-success-message" style="display: none;">Your order has been received!</div>
+    </div>
+
+
+
 </body>
 </html>
