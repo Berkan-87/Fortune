@@ -30,3 +30,4 @@ function getShippingCost(country) {
   console.log(getShippingCost("Jamaica")); // "Shipping to Jamaica will cost 120 credits"
   console.log(getShippingCost("Sweden")); // "Sorry, there is no delivery to your country"
   
+  
