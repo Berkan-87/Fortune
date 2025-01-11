@@ -3,185 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript-Homework1</title>
+    <title>JavaScript-Homework2</title>
     <script src="./js/task-1.js"></script>
     <script src="./js/task-2.js"></script>
     <script src="./js/task-3.js"></script>
     <script src="./js/task-4.js"></script>
 
-    <script>
-                    document.addEventListener("DOMContentLoaded", function () {
-                const calculateButton = document.getElementById("calculate-btn");
-                const completeButton = document.getElementById("complete-btn");
-
-                // Hesaplama İşlemi
-                calculateButton.addEventListener("click", function () {
-                    const droidQuantityElement = document.getElementById("droid-quantity");
-                    const deliveryCountryElement = document.getElementById("delivery-country");
-                    const totalCostElement = document.getElementById("total-cost");
-
-                    // Seçilen droid miktarı ve kredisi
-                    const selectedDroidOption = droidQuantityElement.options[droidQuantityElement.selectedIndex];
-                    const droidCost = selectedDroidOption ? parseInt(selectedDroidOption.getAttribute("data-credits")) : 0;
-
-                    // Seçilen teslimat ücreti
-                    const selectedDeliveryOption = deliveryCountryElement.options[deliveryCountryElement.selectedIndex];
-                    const deliveryFee = selectedDeliveryOption ? parseInt(selectedDeliveryOption.getAttribute("data-fee")) : 0;
-
-                    // Toplam maliyeti hesapla ve göster
-                    if (droidCost && deliveryFee) {
-                        const totalCost = droidCost + deliveryFee;
-                        totalCostElement.value = `${totalCost} credits`;
-                    } else {
-                        totalCostElement.value = "Please select all options!";
-                    }
-                });
-
-                // Complete Order İşlemi
-                completeButton.addEventListener("click", function (event) {
-                    event.preventDefault(); // Sayfanın yeniden yüklenmesini önler
-                    const droidQuantityElement = document.getElementById("droid-quantity");
-                    const deliveryCountryElement = document.getElementById("delivery-country");
-
-                    // Kullanıcının seçim yapıp yapmadığını kontrol et
-                    if (
-                        droidQuantityElement.selectedIndex > 0 &&
-                        deliveryCountryElement.selectedIndex > 0
-                    ) {
-                        alert("Your order is complete!");
-                    } else {
-                        alert("Please complete your selections before ordering!");
-                    }
-                });
-            });
-
-
-        
-    </script>
     <style>
-      
-        /* Genel Ayarlar */
         body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
+            font-family: Arial, sans-serif;
+            margin: 0; /* Kenar boşluklarını kaldırır */
+            background-color: #000000;
+            display: flex; /* Flexbox kullanarak ikiye bölme yap */
+            height: 100vh; /* Tam ekran yüksekliği */
+            
         }
 
         h1 {
             text-align: center;
-            margin: 20px 0;
-            color: #444;
+            color: #000000;
         }
 
-        /* Sipariş Bölümü */
-        #order-section {
-            background-color: #ffffff;
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
+        h2 {
+            font-weight: 900;
+            font-size: 50px;
+            color: #d0dd74;
+            animation: glow 1s infinite alternate;
         }
 
-        /* Form Elemanları */
-        form {
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+            }
+
+            100% {
+                text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000;
+            }
+
+        }
+
+        .container {
+            flex: 1; /* İkiye bölmek için eşit genişlik */
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            justify-content: center; /* İçeriği yatay ortala */
+            align-items: center; /* İçeriği dikey ortala */
+            width: 600px;
         }
+
+        .left-section {
+            line-height: 45px;
+            color: white; /* Sol taraftaki metin rengi */
+            padding: 20px;
+            margin-right: 200px;
+        }
+
+        .right-section {
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 500px; /* Sağ bölmenin genişliğini arttır */
+        }
+
+        @media (max-width: 768px) {
+            /* When screen width is 768px or smaller */
+            h2 {
+                font-weight: 100px;
+                font-size: 40px;
+            }
+            .container {
+                margin-top: auto;
+                height: auto;
+                flex-direction: column; /* Stack the sections vertically */
+                width: 100%; /* Ensure the container takes up full width */
+            }
+
+            .left-section {
+                margin-right: auto; /* Remove the margin when the sections are stacked */
+                margin-bottom: 20px; /* Add space between the sections */
+            }
+
+            .right-section {
+                width: 100%; /* Make the right section take full width */
+                margin-top: 20px; /* Add margin between sections */
+            }
+        }
+
+
+        form {
+            width: 1500px;
+            background: #f5efef;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%; /* Formu tam genişlikte görünür yapar */
+        }
+
 
         label {
             font-weight: bold;
-            margin-bottom: 5px;
+            display: block;
+            margin-bottom: 8px;
         }
-
-        select, input, button {
+        select, button {
+            width: 100%;
             padding: 10px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1rem;
-            box-sizing: border-box;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: #9becb9;
+            text-align: center;
         }
-
         button {
             background-color: #007BFF;
             color: white;
-            border: none;
             cursor: pointer;
-            transition: background-color 0.3s ease-in-out;
         }
-
         button:hover {
             background-color: #0056b3;
         }
-
-        /* Sipariş Alındı Mesajı */
-        #order-success-message {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #e9f7f6;
-            border: 1px solid #a3dad6;
-            border-radius: 8px;
-            text-align: center;
+        #result {
             font-weight: bold;
-            color: #2e856e;
+            margin-top: 20px;
         }
 
+        .right {
+            align-items: right;
+        }
+        .left {
+            align-items: left;
+        }
     </style>
-
 </head>
 <body>
-    
-    <h1>Droid Sales Station</h1>
-
-    <div id="order-section">
-        <form id="order-form">
-            <!-- Droid Quantity -->
-            <label for="droid-quantity">Droid Quantity:</label>
-            <select id="droid-quantity">
-                <option value="" disabled selected>Select quantity</option>
-                <option value="5" data-credits="15000">5 droids (15000 credits)</option>
-                <option value="3" data-credits="3000">3 droids (3000 credits)</option>
-                <option value="10" data-credits="5000">10 droids (5000 credits)</option>
-            </select>
-
-            <!-- Delivery Country -->
-            <label for="delivery-country">Delivery Country:</label>
-            <select id="delivery-country">
-                <option value="" disabled selected>Select country</option>
-                <option value="Australia" data-fee="170">Australia</option>
-                <option value="Germany" data-fee="100">Germany</option>
-                <option value="Sweden" data-fee="120">Sweden</option>
-            </select>
-
-            <button type="button" id="calculate-btn">Calculate</button>
+    <div class="container">
+        <!-- Sol Bölüm -->
+        <div class="left-section">
+            <h2>Welcome to Droid Store</h2>
             <br>
+            
+            <h3>Shop Smart, Live Better!</h3>
+            <br>
+            <p>Discover a world of top-quality products at unbeatable prices. <br>
+                Shop from the comfort of your home and enjoy fast delivery, <br>
+                secure payment options, and excellent customer service. <br>
+                 Your perfect shopping experience starts here!</p>
+        </div>
 
-            <!-- Total Cost -->
-            <label for="total-cost">Total Cost:</label>
-            
-            <input type="text" id="total-cost" readonly placeholder="Total cost will appear here">
-            
-            <!-- Total Cost -->
-            <div class="form-contract">
-                <input type="checkbox" class="form-checkbox visually-hidden" name="user-privacy"
-                    id="user-privacy" value="true">
-                <label for="user-privacy" class="form-check">
-                    
-                    I accept the terms and conditions of the
-                    <a class="form-link" href="">Privacy Policy</a>
-                </label>
-            </div>
-            <!-- Buttons -->
-           
-            <button type="submit" id="complete-btn">Complete Order</button>
+        <!-- Sağ Bölüm (Form) -->
+        <div class="right-section">
+        <form id="droid-form">
+            <h1>Droid Order</h1>
+            <label for="droid-quantity">Droid Quantity:</label>
+            <select id="droid-quantity" required>
+                <option value="" disabled selected>Select quantity</option>
+                <option value="3" data-price="1000">3 droids</option>
+                <option value="5" data-price="3000">5 droids</option>
+                <option value="8" data-price="2000">8 droids</option>
+                <option value="10" data-price="500">10 droids</option>
+            </select>
+
+            <label for="customer-credits">Customer Credits:</label>
+            <select id="customer-credits" required>
+                <option value="" disabled selected>Select credits</option>
+                <option value="15000">15000 credits</option>
+                <option value="23000">23000 credits</option>
+                <option value="8000">8000 credits</option>
+                <option value="10000">10000 credits</option>
+                <option value="5000">5000 credits</option>
+            </select>
+
+            <label for="country">Shipping Country:</label>
+            <select id="country" required>
+                <option value="" disabled selected>Select country</option>
+                <option value="China">China</option>
+                <option value="Chile">Chile</option>
+                <option value="Australia">Australia</option>
+                <option value="Jamaica">Jamaica</option>
+            </select>
+
+            <button type="button" onclick="processTransaction()">Calculate</button>
+
+            <div id="result"></div>
+
+            <button id="complete-order" type="button" onclick="completeOrder()">Complete the Order</button>
+
         </form>
-        <div id="order-success-message" style="display: none;">Your order has been received!</div>
-    </div>
+    </section>
 
-
-
+    <script>
+        function makeTransaction(quantity, pricePerDroid, customerCredits) {
+            const totalPrice = quantity * pricePerDroid;
+    
+            if (totalPrice > customerCredits) {
+                return "Insufficient funds!";
+            } else {
+                return `You ordered ${quantity} droids worth ${totalPrice} credits!`;
+            }
+        }
+    
+        function getShippingCost(country) {
+            let message;
+    
+            switch (country) {
+                case "China":
+                    message = "Shipping to China will cost 100 credits";
+                    break;
+                case "Chile":
+                    message = "Shipping to Chile will cost 250 credits";
+                    break;
+                case "Australia":
+                    message = "Shipping to Australia will cost 170 credits";
+                    break;
+                case "Jamaica":
+                    message = "Shipping to Jamaica will cost 120 credits";
+                    break;
+                default:
+                    message = "Sorry, there is no delivery to your country";
+            }
+    
+            return message;
+        }
+    
+        function processTransaction() {
+            const quantitySelect = document.getElementById("droid-quantity");
+            const creditsSelect = document.getElementById("customer-credits");
+            const countrySelect = document.getElementById("country");
+    
+            const quantity = parseInt(quantitySelect.value);
+            const pricePerDroid = parseInt(quantitySelect.selectedOptions[0].dataset.price);
+            const customerCredits = parseInt(creditsSelect.value);
+            const country = countrySelect.value;
+    
+            const transactionResult = makeTransaction(quantity, pricePerDroid, customerCredits);
+            const shippingResult = getShippingCost(country);
+    
+            document.getElementById("result").innerHTML = `
+                <p>${transactionResult}</p>
+                <p>${shippingResult}</p>
+            `;
+        }
+    
+        // Siparişi Tamamla Butonu için Fonksiyon
+        function completeOrder() {
+            const resultElement = document.getElementById("result");
+            const resultText = resultElement.textContent;
+    
+            if (resultText.includes("Insufficient funds!") || resultText.includes("Sorry, there is no delivery to your country")) {
+                alert("Sorry, unfortunately your order could not be completed.");
+            } else if (resultText.trim() === "") {
+                alert("Please fill out all fields to complete the order.");
+            } else {
+                alert("Your order is complete!");
+            }
+        }
+    </script>
+    
 </body>
 </html>
