@@ -1,9 +1,5 @@
-function slugify(title) {
-    return title
-      .trim()                        // Başındaki ve sonundaki boşlukları temizler
-      .toLowerCase()                 // Tüm harfleri küçük yapar
-      .replace(/\s+/g, '-')          // Birden fazla boşluğu tek bir tire ile değiştirir
-      .replace(/[^\w-]/g, '');       // Harfler, rakamlar ve tire dışında kalan karakterleri temizler
+  function slugify(title) {
+    return title.toLowerCase().split(" ").join("-");
   }
   
   console.log(slugify("Arrays for begginers")); // "arrays-for-begginers"
