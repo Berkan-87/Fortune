@@ -28,21 +28,22 @@ const fortunes = [
 
 const button = document.getElementById("get-fortune-btn");
 const fortuneContainer = document.getElementById("fortune-container");
-const fortuneContent = document.getElementById("fortune-content");
 const fortuneImage = document.getElementById("fortune-image");
 const fortuneTitle = document.getElementById("fortune-title");
 const fortuneText = document.getElementById("fortune-text");
 
 button.addEventListener("click", function() {
+    console.log("Butona tıkladınız!"); // Kontrol etmek için eklenen log
+
     // Rastgele fal seç
     const randomIndex = Math.floor(Math.random() * fortunes.length);
     const selectedFortune = fortunes[randomIndex];
 
-    // Fal içeriğini güncelle
+    // Fal içeriğini göster
     fortuneImage.src = selectedFortune.image;
     fortuneTitle.textContent = selectedFortune.category;
     fortuneText.textContent = selectedFortune.message;
 
-    // Fal içeriğini göster
-    fortuneContent.style.display = "block";
+    // Fal ekranını göster
+    fortuneContainer.classList.remove("hidden");
 });

@@ -1,89 +1,76 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-    background-color: #f4f4f9;
 }
 
-.calculator {
+.container {
+    text-align: center;
     background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+    width: 350px;
+}
+
+h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #5A5A5A;
+}
+
+#fortune-container {
+    margin-top: 30px;
+    /* display: none; */
     text-align: center;
-    width: 300px;
 }
 
-.calculator h1 {
-    font-size: 24px;
+#fortune-content {
+    margin-top: 20px;
+}
+
+#fortune-image {
+    width: 150px;
+    height: 150px;
     margin-bottom: 20px;
-    color: #333;
+    border-radius: 50%;
 }
 
-.calculator input {
-    width: 285px;
-    height: 50px;
-    margin-bottom: 20px;
-    font-size: 28px;
-    text-align: right;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-.buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-}
-
-.buttons button {
+#fortune-message {
     font-size: 18px;
-    padding: 15px;
-    background-color: #007bff;
-    color: #fff;
+}
+
+#fortune-title {
+    font-size: 24px;
+    color: #FF6347;
+    font-weight: bold;
+}
+
+#fortune-text {
+    font-size: 16px;
+    color: #555;
+}
+
+#button {
+    padding: 10px 25px;
+    font-size: 18px;
+    background-color: #FF6347;
+    color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.3s ease;
 }
 
-.buttons button:hover {
-    background-color: #0056b3;
+#button:hover {
+    background-color: #FF4500;
 }
 
-.buttons .clear {
-    background-color: #dc3545;
-    grid-column: span 4;
-    padding-left: 30px;
-    grid-row: span 4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    
-}
-
-
-.buttons .clear:hover {
-    background-color: #a71d2a;
-}
-
-.buttons .proc {
-    background-color: #d4dc35;
-}
-
-.buttons .proc:hover {
-    background-color: #a6ae05;
-}
-
-.buttons .equ {
-    background-color: #35dc40;
-}
-
-.buttons .equ:hover {
-    background-color: #0f9f18;
+.hidden {
+    display: none;
 }
