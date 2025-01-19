@@ -3,175 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript-Homework3</title>
-    <script src="./js/task-1.js"></script>
-    <script src="./js/task-2.js"></script>
-    <script src="./js/task-3.js"></script>
-
-    <style>
-       body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-      color: #333;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-      text-align: center;
-      color: #4CAF50;
-    }
-
-    section {
-      margin: 20px 0;
-      padding: 15px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-    }
-
-    h2 {
-      margin-bottom: 10px;
-      color: #555;
-    }
-
-    input {
-      width: calc(100% - 24px);
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
-    p {
-      margin: 10px 0;
-      font-size: 14px;
-    }
-
-    span {
-      font-weight: bold;
-    }
-    </style>
+    <title>Hesap Makinesi</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="./js/script.js"></script>
 </head>
 <body>
+    <div class="calculator">
+        <h1>Calculator</h1>
+        <input type="text" id="display" readonly>
+        <div class="buttons">
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button class="proc" onclick="setOperation('/')">÷</button>
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button class="proc" onclick="setOperation('*')">×</button>
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button class="proc" onclick="setOperation('-')">−</button>
+            <button onclick="appendNumber('0')">0</button>
+            <button onclick="appendNumber('.')">.</button>
+            <button onclick="calculate()">=</button>
+            <button class="proc" onclick="setOperation('+')">+</button>
+            <button class="clear" onclick="clearDisplay()">C</button>
+        </div>
+    </div>
     
-    <div class="container">
-        <h1>JavaScript Dizi ve Fonksiyonlar</h1>
-    
-        <!-- Görev 1: Slug Oluşturucu -->
-        <section id="slug-section">
-          <h2>Slug Oluşturucu</h2>
-          <select id="slug-options">
-            <option value="Arrays for begginers">Arrays for begginers</option>
-            <option value="English for developer">English for developer</option>
-            <option value="Ten secrets of JavaScript">Ten secrets of JavaScript</option>
-            <option value="How to become a JUNIOR developer in TWO WEEKS">
-              How to become a JUNIOR developer in TWO WEEKS
-            </option>
-          </select>
-          <br>
-          <br>
-          <button id="slug-button">Slug Oluştur</button>
-          <p>Sonuç: <span id="slug-result"></span></p>
-        </section>
-    
-        <!-- Görev 2: Dizi Birleştirici -->
-        <section id="array-section">
-          <h2>Dizi Birleştirici</h2>
-          <select id="array1-options">
-            <option value="Mango,Poly">Mango, Poly</option>
-            <option value="Earth,Jupiter">Earth, Jupiter</option>
-            <option value="Mango,Poly,Houston">Mango, Poly, Houston</option>
-          </select>
-          <select id="array2-options">
-            <option value="Ajax,Chelsea">Ajax, Chelsea</option>
-            <option value="Neptune,Uranus">Neptune, Uranus</option>
-            <option value="Ajax,Chelsea,Poly,Houston">Ajax, Chelsea, Poly, Houston</option>
-          </select>
-          <input type="number" id="maxlength-input" placeholder="Maksimum uzunluk" />
-          <button id="array-button">Dizi Oluştur</button>
-          <p>Sonuç: <span id="array-result"></span></p>
-        </section>
-    
-        <!-- Görev 3: Dizi Filtreleme -->
-        <section id="filter-section">
-          <h2>Dizi Filtreleme</h2>
-          <select id="filter-array-options">
-            <option value="1,2,3,4,5">1, 2, 3, 4, 5</option>
-            <option value="12,24,8,41,76">12, 24, 8, 41, 76</option>
-            <option value="5,10,15,20,25">5, 10, 15, 20, 25</option>
-          </select>
-          <input type="number" id="filter-value-input" placeholder="Filtre değeri" />
-          <button id="filter-button">Filtrele</button>
-          <p>Sonuç: <span id="filter-result"></span></p>
-        </section>
-      </div>
-    
-      <script>
-        // Görev 1: Slug Oluşturucu
-        function slugify(title) {
-          return title
-            .trim()
-            .toLowerCase()
-            .replace(/\s+/g, '-')
-            .replace(/[^\w-]/g, '');
-        }
-    
-        document.getElementById('slug-button').addEventListener('click', () => {
-          const title = document.getElementById('slug-options').value;
-          const slug = slugify(title);
-          document.getElementById('slug-result').textContent = slug;
-        });
-    
-        // Görev 2: Dizi Birleştirici
-        function makeArray(firstArray, secondArray, maxLength) {
-          const newArray = firstArray.concat(secondArray);
-          return newArray.slice(0, maxLength);
-        }
-    
-        document.getElementById('array-button').addEventListener('click', () => {
-          const array1 = document.getElementById('array1-options').value.split(',');
-          const array2 = document.getElementById('array2-options').value.split(',');
-          const maxLength = parseInt(document.getElementById('maxlength-input').value, 10);
-          const resultArray = makeArray(array1, array2, maxLength);
-          document.getElementById('array-result').textContent = `[${resultArray.join(', ')}]`;
-        });
-    
-        // Görev 3: Dizi Filtreleme
-        function filterArray(numbers, value) {
-          return numbers.filter((number) => number > value);
-        }
-    
-        document.getElementById('filter-button').addEventListener('click', () => {
-          const numbers = document
-            .getElementById('filter-array-options')
-            .value.split(',')
-            .map(Number);
-          const value = parseInt(document.getElementById('filter-value-input').value, 10);
-          const filteredArray = filterArray(numbers, value);
-          document.getElementById('filter-result').textContent = `[${filteredArray.join(', ')}]`;
-        });
-    </script>
 </body>
 </html>
