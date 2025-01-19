@@ -24,10 +24,10 @@ body {
 }
 
 .calculator input {
-    width: 100%;
+    width: 285px;
     height: 50px;
     margin-bottom: 20px;
-    font-size: 18px;
+    font-size: 28px;
     text-align: right;
     border: 2px solid #ddd;
     border-radius: 5px;
@@ -57,7 +57,16 @@ body {
 
 .buttons .clear {
     background-color: #dc3545;
+    grid-column: span 4;
+    padding-left: 30px;
+    grid-row: span 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
 }
+
 
 .buttons .clear:hover {
     background-color: #a71d2a;
@@ -69,4 +78,12 @@ body {
 
 .buttons .proc:hover {
     background-color: #a6ae05;
+}
+
+.buttons .equ {
+    background-color: #35dc40;
+}
+
+.buttons .equ:hover {
+    background-color: #0f9f18;
 }
